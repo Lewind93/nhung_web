@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         listElement.innerHTML = '';
         undergraduates.forEach((student, index) => {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `${student.name} - ${student.major} <button onclick="editStudent(${index})">Edit</button>`;
+            listItem.innerHTML = `${student.name} - ${student.major} 
+                <button onclick="editStudent(${index})">Edit</button>
+                <button onclick="deleteStudent(${index})">Delete</button>`;
             listElement.appendChild(listItem);
         });
     }
@@ -43,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         nameInput.value = student.name;
         majorInput.value = student.major;
         editIndex = index;
+    };
+
+    window.deleteStudent = function(index) {
+        undergraduates.splice(index, 1);
+        renderList();
     };
 
     renderList();
